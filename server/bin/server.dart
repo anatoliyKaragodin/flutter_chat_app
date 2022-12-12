@@ -22,6 +22,7 @@ class GrpcChat extends GrpcChatServiceBase {
     _controllers[clientController] = null;
 
     request.listen((req) {
+      //save hascode
       print(
           'Request ${req.content} + from sender: ${req.senderMainId} in chat: ${req.chatIdMain} with haschcode: (#${request.hashCode})');
 
