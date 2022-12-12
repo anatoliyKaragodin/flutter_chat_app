@@ -35,6 +35,7 @@ class DbServerServices implements IDbServerServices {
           email             char(50) NOT NULL,
           registration_date char(26) NOT NULL,
           profile_pic_url   char(50) NOT NULL,
+          hashcode          integer UNIQUE,
           CHECK (LENGTH(registration_date) >= 26)
           );
         ''');

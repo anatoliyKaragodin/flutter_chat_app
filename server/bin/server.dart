@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:grpc/grpc.dart';
 
 import '../lib/src/generated/grpc_manager.pbgrpc.dart';
@@ -7,13 +9,20 @@ import '../lib/src/library/library_server.dart';
 ///Заполняем все методы как и в Protoc файле
 ///
 class GrpcChat extends GrpcChatServiceBase {
+  final _controllers = <StreamController<Message>, void>{};
   var messagesService = MessagesServices();
   var chatsService = ChatsServices();
   var usersService = UsersServices();
 
+  //должен возращать Stream<Message>
+  //входной параметр Stream<Message>
   @override
   Future<Empty> connecting(ServiceCall call, Empty request) async {
-    // TODO: implement connecting
+    print('Connected: #${request.hashCode}');
+    //сохраняем в базу хэшкод
+    final clientController = StreamController<Message>();
+    _controllers[clientController] = null;
+
     return Empty();
   }
 

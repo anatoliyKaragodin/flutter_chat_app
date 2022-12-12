@@ -2,12 +2,11 @@
 syntax = "proto3";
 //import "google/protobuf/timestamp.proto";
 service  GrpcChat{
-    rpc connecting (Empty) returns (Empty) {}
+    rpc connecting (stream Message) returns (stream MessageBase) {}
     rpc createMessage (Message) returns (MessageBase) {}
     rpc createMessages (stream Message) returns (stream MessageBase) {}
     rpc synchronization (LastMessage) returns (stream MessageFromBase) {}
 }
-
 
 message Empty {}
 

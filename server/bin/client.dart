@@ -2,7 +2,6 @@ import 'package:grpc/grpc.dart';
 
 import '../lib/src/generated/grpc_manager.pbgrpc.dart';
 
-
 class Client {
   ClientChannel? channel;
   //Класс заглушка, определяет все функции которые есть на сервере
