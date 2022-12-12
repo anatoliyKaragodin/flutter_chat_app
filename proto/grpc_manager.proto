@@ -2,7 +2,7 @@
 syntax = "proto3";
 //import "google/protobuf/timestamp.proto";
 service  GrpcChat{
-    rpc connecting (stream Message) returns (stream MessageBase) {}
+    rpc connecting (stream Message) returns (stream Message) {}
     rpc createMessage (Message) returns (MessageBase) {}
     rpc createMessages (stream Message) returns (stream MessageBase) {}
     rpc synchronization (LastMessage) returns (stream MessageFromBase) {}
@@ -11,10 +11,11 @@ service  GrpcChat{
 message Empty {}
 
 message Message {
-    int32 chatIdMaint = 1;
+    int32 chatIdMain = 1;
     int32 senderMainId = 2;
     string content = 3;
-    string date = 4; //26 symbols
+    int64 hashcode = 4;
+    string date = 5; //26 symbols
 }
 
 message MessageBase {
@@ -31,6 +32,6 @@ message MessageFromBase {
     int32 chatIdMain = 1;
     int32 senderMainId = 2;
     string content = 3;
-    string date = 4;
-    int32 mainIdMessage = 5;
+    string date = 5;
+    int32 mainIdMessage = 6;
 }

@@ -7,6 +7,7 @@
 
 import 'dart:core' as $core;
 
+import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class Empty extends $pb.GeneratedMessage {
@@ -40,29 +41,34 @@ class Empty extends $pb.GeneratedMessage {
 
 class Message extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Message', createEmptyInstance: create)
-    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'chatIdMaint', $pb.PbFieldType.O3, protoName: 'chatIdMaint')
+    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'chatIdMain', $pb.PbFieldType.O3, protoName: 'chatIdMain')
     ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'senderMainId', $pb.PbFieldType.O3, protoName: 'senderMainId')
     ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'content')
-    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'date')
+    ..aInt64(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'hashcode')
+    ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'date')
     ..hasRequiredFields = false
   ;
 
   Message._() : super();
   factory Message({
-    $core.int? chatIdMaint,
+    $core.int? chatIdMain,
     $core.int? senderMainId,
     $core.String? content,
+    $fixnum.Int64? hashcode,
     $core.String? date,
   }) {
     final _result = create();
-    if (chatIdMaint != null) {
-      _result.chatIdMaint = chatIdMaint;
+    if (chatIdMain != null) {
+      _result.chatIdMain = chatIdMain;
     }
     if (senderMainId != null) {
       _result.senderMainId = senderMainId;
     }
     if (content != null) {
       _result.content = content;
+    }
+    if (hashcode != null) {
+      _result.hashcode = hashcode;
     }
     if (date != null) {
       _result.date = date;
@@ -91,13 +97,13 @@ class Message extends $pb.GeneratedMessage {
   static Message? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get chatIdMaint => $_getIZ(0);
+  $core.int get chatIdMain => $_getIZ(0);
   @$pb.TagNumber(1)
-  set chatIdMaint($core.int v) { $_setSignedInt32(0, v); }
+  set chatIdMain($core.int v) { $_setSignedInt32(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasChatIdMaint() => $_has(0);
+  $core.bool hasChatIdMain() => $_has(0);
   @$pb.TagNumber(1)
-  void clearChatIdMaint() => clearField(1);
+  void clearChatIdMain() => clearField(1);
 
   @$pb.TagNumber(2)
   $core.int get senderMainId => $_getIZ(1);
@@ -118,13 +124,22 @@ class Message extends $pb.GeneratedMessage {
   void clearContent() => clearField(3);
 
   @$pb.TagNumber(4)
-  $core.String get date => $_getSZ(3);
+  $fixnum.Int64 get hashcode => $_getI64(3);
   @$pb.TagNumber(4)
-  set date($core.String v) { $_setString(3, v); }
+  set hashcode($fixnum.Int64 v) { $_setInt64(3, v); }
   @$pb.TagNumber(4)
-  $core.bool hasDate() => $_has(3);
+  $core.bool hasHashcode() => $_has(3);
   @$pb.TagNumber(4)
-  void clearDate() => clearField(4);
+  void clearHashcode() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get date => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set date($core.String v) { $_setString(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasDate() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearDate() => clearField(5);
 }
 
 class MessageBase extends $pb.GeneratedMessage {
@@ -254,8 +269,8 @@ class MessageFromBase extends $pb.GeneratedMessage {
     ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'chatIdMain', $pb.PbFieldType.O3, protoName: 'chatIdMain')
     ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'senderMainId', $pb.PbFieldType.O3, protoName: 'senderMainId')
     ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'content')
-    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'date')
-    ..a<$core.int>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mainIdMessage', $pb.PbFieldType.O3, protoName: 'mainIdMessage')
+    ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'date')
+    ..a<$core.int>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mainIdMessage', $pb.PbFieldType.O3, protoName: 'mainIdMessage')
     ..hasRequiredFields = false
   ;
 
@@ -333,22 +348,22 @@ class MessageFromBase extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   void clearContent() => clearField(3);
 
-  @$pb.TagNumber(4)
+  @$pb.TagNumber(5)
   $core.String get date => $_getSZ(3);
-  @$pb.TagNumber(4)
+  @$pb.TagNumber(5)
   set date($core.String v) { $_setString(3, v); }
-  @$pb.TagNumber(4)
+  @$pb.TagNumber(5)
   $core.bool hasDate() => $_has(3);
-  @$pb.TagNumber(4)
-  void clearDate() => clearField(4);
+  @$pb.TagNumber(5)
+  void clearDate() => clearField(5);
 
-  @$pb.TagNumber(5)
+  @$pb.TagNumber(6)
   $core.int get mainIdMessage => $_getIZ(4);
-  @$pb.TagNumber(5)
+  @$pb.TagNumber(6)
   set mainIdMessage($core.int v) { $_setSignedInt32(4, v); }
-  @$pb.TagNumber(5)
+  @$pb.TagNumber(6)
   $core.bool hasMainIdMessage() => $_has(4);
-  @$pb.TagNumber(5)
-  void clearMainIdMessage() => clearField(5);
+  @$pb.TagNumber(6)
+  void clearMainIdMessage() => clearField(6);
 }
 

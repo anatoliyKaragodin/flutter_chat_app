@@ -14,22 +14,45 @@ class GrpcChat extends GrpcChatServiceBase {
   var chatsService = ChatsServices();
   var usersService = UsersServices();
 
-  //должен возращать Stream<Message>
-  //входной параметр Stream<Message>
   @override
-  Future<Empty> connecting(ServiceCall call, Empty request) async {
-    print('Connected: #${request.hashCode}');
-    //сохраняем в базу хэшкод
+  Stream<Message> connecting(ServiceCall call, Stream<Message> request) async* {
+    print('Connecting: ${request.hashCode}');
+
     final clientController = StreamController<Message>();
     _controllers[clientController] = null;
 
-    return Empty();
+    request.listen((req) {
+      print(
+          'Request ${req.content} + from sender: ${req.senderMainId} in chat: ${req.chatIdMain} with haschcode: (#${request.hashCode})');
+
+      _controllers.forEach((controller, _) {
+        if (controller != clientController) {
+          controller.sink.add(req);
+        }
+      });
+    }).onError((dynamic e) {
+      print(e);
+      _controllers.remove(clientController);
+      clientController.close();
+      print('Disconnected: #${request.hashCode}');
+    });
+
+    await for (final req in clientController.stream) {
+      print('  -> piped to #${request.hashCode}');
+
+      yield Message(
+          chatIdMain: req.chatIdMain,
+          senderMainId: req.senderMainId,
+          content: req.content,
+          hashcode: req.hashcode,
+          date: req.date);
+    }
   }
 
   @override
   Future<MessageBase> createMessage(ServiceCall call, Message request) async {
     var src = await messagesService.addNewMessage(
-        friendsChatId: request.chatIdMaint,
+        friendsChatId: request.chatIdMain,
         senderId: request.senderMainId,
         content: request.content,
         date: request.date);

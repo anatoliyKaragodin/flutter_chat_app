@@ -19,15 +19,16 @@ final $typed_data.Uint8List emptyDescriptor = $convert.base64Decode('CgVFbXB0eQ=
 const Message$json = const {
   '1': 'Message',
   '2': const [
-    const {'1': 'chatIdMaint', '3': 1, '4': 1, '5': 5, '10': 'chatIdMaint'},
+    const {'1': 'chatIdMain', '3': 1, '4': 1, '5': 5, '10': 'chatIdMain'},
     const {'1': 'senderMainId', '3': 2, '4': 1, '5': 5, '10': 'senderMainId'},
     const {'1': 'content', '3': 3, '4': 1, '5': 9, '10': 'content'},
-    const {'1': 'date', '3': 4, '4': 1, '5': 9, '10': 'date'},
+    const {'1': 'hashcode', '3': 4, '4': 1, '5': 3, '10': 'hashcode'},
+    const {'1': 'date', '3': 5, '4': 1, '5': 9, '10': 'date'},
   ],
 };
 
 /// Descriptor for `Message`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List messageDescriptor = $convert.base64Decode('CgdNZXNzYWdlEiAKC2NoYXRJZE1haW50GAEgASgFUgtjaGF0SWRNYWludBIiCgxzZW5kZXJNYWluSWQYAiABKAVSDHNlbmRlck1haW5JZBIYCgdjb250ZW50GAMgASgJUgdjb250ZW50EhIKBGRhdGUYBCABKAlSBGRhdGU=');
+final $typed_data.Uint8List messageDescriptor = $convert.base64Decode('CgdNZXNzYWdlEh4KCmNoYXRJZE1haW4YASABKAVSCmNoYXRJZE1haW4SIgoMc2VuZGVyTWFpbklkGAIgASgFUgxzZW5kZXJNYWluSWQSGAoHY29udGVudBgDIAEoCVIHY29udGVudBIaCghoYXNoY29kZRgEIAEoA1IIaGFzaGNvZGUSEgoEZGF0ZRgFIAEoCVIEZGF0ZQ==');
 @$core.Deprecated('Use messageBaseDescriptor instead')
 const MessageBase$json = const {
   '1': 'MessageBase',
@@ -57,10 +58,10 @@ const MessageFromBase$json = const {
     const {'1': 'chatIdMain', '3': 1, '4': 1, '5': 5, '10': 'chatIdMain'},
     const {'1': 'senderMainId', '3': 2, '4': 1, '5': 5, '10': 'senderMainId'},
     const {'1': 'content', '3': 3, '4': 1, '5': 9, '10': 'content'},
-    const {'1': 'date', '3': 4, '4': 1, '5': 9, '10': 'date'},
-    const {'1': 'mainIdMessage', '3': 5, '4': 1, '5': 5, '10': 'mainIdMessage'},
+    const {'1': 'date', '3': 5, '4': 1, '5': 9, '10': 'date'},
+    const {'1': 'mainIdMessage', '3': 6, '4': 1, '5': 5, '10': 'mainIdMessage'},
   ],
 };
 
 /// Descriptor for `MessageFromBase`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List messageFromBaseDescriptor = $convert.base64Decode('Cg9NZXNzYWdlRnJvbUJhc2USHgoKY2hhdElkTWFpbhgBIAEoBVIKY2hhdElkTWFpbhIiCgxzZW5kZXJNYWluSWQYAiABKAVSDHNlbmRlck1haW5JZBIYCgdjb250ZW50GAMgASgJUgdjb250ZW50EhIKBGRhdGUYBCABKAlSBGRhdGUSJAoNbWFpbklkTWVzc2FnZRgFIAEoBVINbWFpbklkTWVzc2FnZQ==');
+final $typed_data.Uint8List messageFromBaseDescriptor = $convert.base64Decode('Cg9NZXNzYWdlRnJvbUJhc2USHgoKY2hhdElkTWFpbhgBIAEoBVIKY2hhdElkTWFpbhIiCgxzZW5kZXJNYWluSWQYAiABKAVSDHNlbmRlck1haW5JZBIYCgdjb250ZW50GAMgASgJUgdjb250ZW50EhIKBGRhdGUYBSABKAlSBGRhdGUSJAoNbWFpbklkTWVzc2FnZRgGIAEoBVINbWFpbklkTWVzc2FnZQ==');
