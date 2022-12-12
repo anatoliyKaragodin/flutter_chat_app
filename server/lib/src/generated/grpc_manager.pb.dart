@@ -7,7 +7,6 @@
 
 import 'dart:core' as $core;
 
-import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class Empty extends $pb.GeneratedMessage {
@@ -41,37 +40,52 @@ class Empty extends $pb.GeneratedMessage {
 
 class Message extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Message', createEmptyInstance: create)
-    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'chatIdMain', $pb.PbFieldType.O3, protoName: 'chatIdMain')
-    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'senderMainId', $pb.PbFieldType.O3, protoName: 'senderMainId')
+    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'senderId', $pb.PbFieldType.O3, protoName: 'senderId')
+    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'chatId', $pb.PbFieldType.O3, protoName: 'chatId')
     ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'content')
-    ..aInt64(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'hashcode')
-    ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'date')
+    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'createdDate', protoName: 'createdDate')
+    ..a<$core.int>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'messageId', $pb.PbFieldType.O3, protoName: 'messageId')
+    ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'updatedDate', protoName: 'updatedDate')
+    ..aOS(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'deletedDate', protoName: 'deletedDate')
+    ..aOB(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'isRead', protoName: 'isRead')
     ..hasRequiredFields = false
   ;
 
   Message._() : super();
   factory Message({
-    $core.int? chatIdMain,
-    $core.int? senderMainId,
+    $core.int? senderId,
+    $core.int? chatId,
     $core.String? content,
-    $fixnum.Int64? hashcode,
-    $core.String? date,
+    $core.String? createdDate,
+    $core.int? messageId,
+    $core.String? updatedDate,
+    $core.String? deletedDate,
+    $core.bool? isRead,
   }) {
     final _result = create();
-    if (chatIdMain != null) {
-      _result.chatIdMain = chatIdMain;
+    if (senderId != null) {
+      _result.senderId = senderId;
     }
-    if (senderMainId != null) {
-      _result.senderMainId = senderMainId;
+    if (chatId != null) {
+      _result.chatId = chatId;
     }
     if (content != null) {
       _result.content = content;
     }
-    if (hashcode != null) {
-      _result.hashcode = hashcode;
+    if (createdDate != null) {
+      _result.createdDate = createdDate;
     }
-    if (date != null) {
-      _result.date = date;
+    if (messageId != null) {
+      _result.messageId = messageId;
+    }
+    if (updatedDate != null) {
+      _result.updatedDate = updatedDate;
+    }
+    if (deletedDate != null) {
+      _result.deletedDate = deletedDate;
+    }
+    if (isRead != null) {
+      _result.isRead = isRead;
     }
     return _result;
   }
@@ -97,22 +111,22 @@ class Message extends $pb.GeneratedMessage {
   static Message? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get chatIdMain => $_getIZ(0);
+  $core.int get senderId => $_getIZ(0);
   @$pb.TagNumber(1)
-  set chatIdMain($core.int v) { $_setSignedInt32(0, v); }
+  set senderId($core.int v) { $_setSignedInt32(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasChatIdMain() => $_has(0);
+  $core.bool hasSenderId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearChatIdMain() => clearField(1);
+  void clearSenderId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.int get senderMainId => $_getIZ(1);
+  $core.int get chatId => $_getIZ(1);
   @$pb.TagNumber(2)
-  set senderMainId($core.int v) { $_setSignedInt32(1, v); }
+  set chatId($core.int v) { $_setSignedInt32(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasSenderMainId() => $_has(1);
+  $core.bool hasChatId() => $_has(1);
   @$pb.TagNumber(2)
-  void clearSenderMainId() => clearField(2);
+  void clearChatId() => clearField(2);
 
   @$pb.TagNumber(3)
   $core.String get content => $_getSZ(2);
@@ -124,42 +138,69 @@ class Message extends $pb.GeneratedMessage {
   void clearContent() => clearField(3);
 
   @$pb.TagNumber(4)
-  $fixnum.Int64 get hashcode => $_getI64(3);
+  $core.String get createdDate => $_getSZ(3);
   @$pb.TagNumber(4)
-  set hashcode($fixnum.Int64 v) { $_setInt64(3, v); }
+  set createdDate($core.String v) { $_setString(3, v); }
   @$pb.TagNumber(4)
-  $core.bool hasHashcode() => $_has(3);
+  $core.bool hasCreatedDate() => $_has(3);
   @$pb.TagNumber(4)
-  void clearHashcode() => clearField(4);
+  void clearCreatedDate() => clearField(4);
 
   @$pb.TagNumber(5)
-  $core.String get date => $_getSZ(4);
+  $core.int get messageId => $_getIZ(4);
   @$pb.TagNumber(5)
-  set date($core.String v) { $_setString(4, v); }
+  set messageId($core.int v) { $_setSignedInt32(4, v); }
   @$pb.TagNumber(5)
-  $core.bool hasDate() => $_has(4);
+  $core.bool hasMessageId() => $_has(4);
   @$pb.TagNumber(5)
-  void clearDate() => clearField(5);
+  void clearMessageId() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.String get updatedDate => $_getSZ(5);
+  @$pb.TagNumber(6)
+  set updatedDate($core.String v) { $_setString(5, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasUpdatedDate() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearUpdatedDate() => clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.String get deletedDate => $_getSZ(6);
+  @$pb.TagNumber(7)
+  set deletedDate($core.String v) { $_setString(6, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasDeletedDate() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearDeletedDate() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.bool get isRead => $_getBF(7);
+  @$pb.TagNumber(8)
+  set isRead($core.bool v) { $_setBool(7, v); }
+  @$pb.TagNumber(8)
+  $core.bool hasIsRead() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearIsRead() => clearField(8);
 }
 
 class MessageBase extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'MessageBase', createEmptyInstance: create)
     ..aOB(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'ok')
-    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mainMessagesId', $pb.PbFieldType.O3, protoName: 'mainMessagesId')
+    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'messageId', $pb.PbFieldType.O3, protoName: 'messageId')
     ..hasRequiredFields = false
   ;
 
   MessageBase._() : super();
   factory MessageBase({
     $core.bool? ok,
-    $core.int? mainMessagesId,
+    $core.int? messageId,
   }) {
     final _result = create();
     if (ok != null) {
       _result.ok = ok;
     }
-    if (mainMessagesId != null) {
-      _result.mainMessagesId = mainMessagesId;
+    if (messageId != null) {
+      _result.messageId = messageId;
     }
     return _result;
   }
@@ -194,33 +235,33 @@ class MessageBase extends $pb.GeneratedMessage {
   void clearOk() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.int get mainMessagesId => $_getIZ(1);
+  $core.int get messageId => $_getIZ(1);
   @$pb.TagNumber(2)
-  set mainMessagesId($core.int v) { $_setSignedInt32(1, v); }
+  set messageId($core.int v) { $_setSignedInt32(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasMainMessagesId() => $_has(1);
+  $core.bool hasMessageId() => $_has(1);
   @$pb.TagNumber(2)
-  void clearMainMessagesId() => clearField(2);
+  void clearMessageId() => clearField(2);
 }
 
 class LastMessage extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'LastMessage', createEmptyInstance: create)
-    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mainIdMessage', $pb.PbFieldType.O3, protoName: 'mainIdMessage')
-    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mainIdUser', $pb.PbFieldType.O3, protoName: 'mainIdUser')
+    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'messageId', $pb.PbFieldType.O3, protoName: 'messageId')
+    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'userId', $pb.PbFieldType.O3, protoName: 'userId')
     ..hasRequiredFields = false
   ;
 
   LastMessage._() : super();
   factory LastMessage({
-    $core.int? mainIdMessage,
-    $core.int? mainIdUser,
+    $core.int? messageId,
+    $core.int? userId,
   }) {
     final _result = create();
-    if (mainIdMessage != null) {
-      _result.mainIdMessage = mainIdMessage;
+    if (messageId != null) {
+      _result.messageId = messageId;
     }
-    if (mainIdUser != null) {
-      _result.mainIdUser = mainIdUser;
+    if (userId != null) {
+      _result.userId = userId;
     }
     return _result;
   }
@@ -246,57 +287,62 @@ class LastMessage extends $pb.GeneratedMessage {
   static LastMessage? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get mainIdMessage => $_getIZ(0);
+  $core.int get messageId => $_getIZ(0);
   @$pb.TagNumber(1)
-  set mainIdMessage($core.int v) { $_setSignedInt32(0, v); }
+  set messageId($core.int v) { $_setSignedInt32(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasMainIdMessage() => $_has(0);
+  $core.bool hasMessageId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearMainIdMessage() => clearField(1);
+  void clearMessageId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.int get mainIdUser => $_getIZ(1);
+  $core.int get userId => $_getIZ(1);
   @$pb.TagNumber(2)
-  set mainIdUser($core.int v) { $_setSignedInt32(1, v); }
+  set userId($core.int v) { $_setSignedInt32(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasMainIdUser() => $_has(1);
+  $core.bool hasUserId() => $_has(1);
   @$pb.TagNumber(2)
-  void clearMainIdUser() => clearField(2);
+  void clearUserId() => clearField(2);
 }
 
 class MessageFromBase extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'MessageFromBase', createEmptyInstance: create)
-    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'chatIdMain', $pb.PbFieldType.O3, protoName: 'chatIdMain')
-    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'senderMainId', $pb.PbFieldType.O3, protoName: 'senderMainId')
+    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'chatId', $pb.PbFieldType.O3, protoName: 'chatId')
+    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'senderId', $pb.PbFieldType.O3, protoName: 'senderId')
     ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'content')
-    ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'date')
-    ..a<$core.int>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mainIdMessage', $pb.PbFieldType.O3, protoName: 'mainIdMessage')
+    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'createdDate', protoName: 'createdDate')
+    ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'updatedDate', protoName: 'updatedDate')
+    ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'deletedDate', protoName: 'deletedDate')
     ..hasRequiredFields = false
   ;
 
   MessageFromBase._() : super();
   factory MessageFromBase({
-    $core.int? chatIdMain,
-    $core.int? senderMainId,
+    $core.int? chatId,
+    $core.int? senderId,
     $core.String? content,
-    $core.String? date,
-    $core.int? mainIdMessage,
+    $core.String? createdDate,
+    $core.String? updatedDate,
+    $core.String? deletedDate,
   }) {
     final _result = create();
-    if (chatIdMain != null) {
-      _result.chatIdMain = chatIdMain;
+    if (chatId != null) {
+      _result.chatId = chatId;
     }
-    if (senderMainId != null) {
-      _result.senderMainId = senderMainId;
+    if (senderId != null) {
+      _result.senderId = senderId;
     }
     if (content != null) {
       _result.content = content;
     }
-    if (date != null) {
-      _result.date = date;
+    if (createdDate != null) {
+      _result.createdDate = createdDate;
     }
-    if (mainIdMessage != null) {
-      _result.mainIdMessage = mainIdMessage;
+    if (updatedDate != null) {
+      _result.updatedDate = updatedDate;
+    }
+    if (deletedDate != null) {
+      _result.deletedDate = deletedDate;
     }
     return _result;
   }
@@ -322,22 +368,22 @@ class MessageFromBase extends $pb.GeneratedMessage {
   static MessageFromBase? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get chatIdMain => $_getIZ(0);
+  $core.int get chatId => $_getIZ(0);
   @$pb.TagNumber(1)
-  set chatIdMain($core.int v) { $_setSignedInt32(0, v); }
+  set chatId($core.int v) { $_setSignedInt32(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasChatIdMain() => $_has(0);
+  $core.bool hasChatId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearChatIdMain() => clearField(1);
+  void clearChatId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.int get senderMainId => $_getIZ(1);
+  $core.int get senderId => $_getIZ(1);
   @$pb.TagNumber(2)
-  set senderMainId($core.int v) { $_setSignedInt32(1, v); }
+  set senderId($core.int v) { $_setSignedInt32(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasSenderMainId() => $_has(1);
+  $core.bool hasSenderId() => $_has(1);
   @$pb.TagNumber(2)
-  void clearSenderMainId() => clearField(2);
+  void clearSenderId() => clearField(2);
 
   @$pb.TagNumber(3)
   $core.String get content => $_getSZ(2);
@@ -348,22 +394,31 @@ class MessageFromBase extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   void clearContent() => clearField(3);
 
+  @$pb.TagNumber(4)
+  $core.String get createdDate => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set createdDate($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasCreatedDate() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearCreatedDate() => clearField(4);
+
   @$pb.TagNumber(5)
-  $core.String get date => $_getSZ(3);
+  $core.String get updatedDate => $_getSZ(4);
   @$pb.TagNumber(5)
-  set date($core.String v) { $_setString(3, v); }
+  set updatedDate($core.String v) { $_setString(4, v); }
   @$pb.TagNumber(5)
-  $core.bool hasDate() => $_has(3);
+  $core.bool hasUpdatedDate() => $_has(4);
   @$pb.TagNumber(5)
-  void clearDate() => clearField(5);
+  void clearUpdatedDate() => clearField(5);
 
   @$pb.TagNumber(6)
-  $core.int get mainIdMessage => $_getIZ(4);
+  $core.String get deletedDate => $_getSZ(5);
   @$pb.TagNumber(6)
-  set mainIdMessage($core.int v) { $_setSignedInt32(4, v); }
+  set deletedDate($core.String v) { $_setString(5, v); }
   @$pb.TagNumber(6)
-  $core.bool hasMainIdMessage() => $_has(4);
+  $core.bool hasDeletedDate() => $_has(5);
   @$pb.TagNumber(6)
-  void clearMainIdMessage() => clearField(6);
+  void clearDeletedDate() => clearField(6);
 }
 

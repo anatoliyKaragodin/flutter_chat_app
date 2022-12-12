@@ -31,7 +31,7 @@ class Client {
       response = await stub!.createMessage(message);
     } catch (e) {
       print(e);
-      response = MessageBase(ok: false, mainMessagesId: 0);
+      response = MessageBase(ok: false, messageId: 0);
     } finally {
       if (response.ok) {
         print('Записали сообщение на сервер');
@@ -67,10 +67,10 @@ var con = false;
 void main() async {
   var client = Client();
   var message = Message();
-  message.chatIdMain = 1;
-  message.senderMainId = 1;
+  message.messageId = 1;
+  message.senderId = 1;
   message.content = "Hello";
-  message.date = "2022-12-02T21:36:32.653712";
+  message.createdDate = "2022-12-02T21:36:32.653712";
 
   ///
   ///Если присылает один и тот же mainMessageId

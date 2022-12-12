@@ -2,22 +2,38 @@ import '../../../library/library_server.dart';
 
 class ChatsServices implements IChatsServices {
   @override
-  createChat({required int friend1_id, required int friend2_id}) async {
+  createChat({
+    required int friend1Id,
+    required int friend2Id,
+    required String createdDate,
+    String? deletedDate,
+    required String updatedDate,
+  }) async {
     var db = await dbServerServices.openDatabase();
 
     await db.execute('''
-      INSERT INTO friends_chat (friend1_id, friend2_id) VALUES (
-        $friend1_id,
-        $friend2_id
+      INSERT INTO friends_chat (friend1_id, friend2_id, created_date, deleted_date, updated_date) VALUES (
+        $friend1Id,
+        $friend2Id,
+        "$createdDate",
+        "$deletedDate",
+        "$updatedDate"
       );
       ''');
 
     return await db.rawQuery('''
-      SELECT main_friends_chat_id FROM friends_chat 
+      SELECT chat_id FROM friends_chat 
       WHERE (
-        (friend1_id = $friend1_id) 
+        (friend1_id = $friend1Id) 
         AND 
-        (friend2_id = $friend2_id));
+        (friend2_id = $friend2Id)
+        AND
+        (created_date = $createdDate)
+        AND
+        (deleted_date = $deletedDate)
+        AND
+        (update_date = $updatedDate) 
+        );
     ''');
   }
 
@@ -34,7 +50,7 @@ class ChatsServices implements IChatsServices {
 
     return await db.rawQuery('''
       SELECT * FROM friends_chat 
-        WHERE (main_friends_chat_id = $id)
+        WHERE (chat_id = $id)
     ''');
   }
 
@@ -49,28 +65,28 @@ class ChatsServices implements IChatsServices {
   deleteChat({required int id}) async {
     var db = await dbServerServices.openDatabase();
 
-    return await db.rawDelete(
-        '''DELETE FROM friends_chat WHERE (main_friends_chat_id = $id)''');
+    return await db
+        .rawDelete('''DELETE FROM friends_chat WHERE (chat_id = $id)''');
   }
 
   @override
-  getChatByTwoIds({required int friend1_id, required int friend2_id}) async {
+  getChatByTwoIds({required int friend1Id, required int friend2Id}) async {
     var db = await dbServerServices.openDatabase();
 
     var id_chat = await db.rawQuery('''
-      SELECT f.main_friends_chat_id FROM friends_chat f 
+      SELECT f.chat_id FROM friends_chat f 
 	      WHERE 
-        (((f.friend1_id = $friend1_id) AND (f.friend2_id = $friend2_id)) 
+        (((f.friend1_id = $friend1Id) AND (f.friend2_id = $friend2Id)) 
         OR 
-        ((f.friend1_id = $friend2_id) AND (f.friend2_id = $friend1_id)))''');
+        ((f.friend1_id = $friend2Id) AND (f.friend2_id = $friend1Id)))''');
     return id_chat[0]['main_friends_chat_id'];
   }
 
   @override
-  getChatsByUserId({required int userID}) async {
+  getChatsByUserId({required int userId}) async {
     var db = await dbServerServices.openDatabase();
 
     return await db.rawQuery('''SELECT * FROM friends_chat f 
-	    WHERE ((f.friend1_id = $userID) OR (f.friend2_id = $userID))''');
+	    WHERE ((f.friend1_id = $userId) OR (f.friend2_id = $userId))''');
   }
 }

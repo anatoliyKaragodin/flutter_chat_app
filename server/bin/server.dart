@@ -15,54 +15,20 @@ class GrpcChat extends GrpcChatServiceBase {
   var usersService = UsersServices();
 
   @override
-  Stream<Message> connecting(ServiceCall call, Stream<Message> request) async* {
-    print('Connecting: ${request.hashCode}');
-
-    final clientController = StreamController<Message>();
-    _controllers[clientController] = null;
-
-    request.listen((req) {
-      //save hascode
-      print(
-          'Request ${req.content} + from sender: ${req.senderMainId} in chat: ${req.chatIdMain} with haschcode: (#${request.hashCode})');
-
-      _controllers.forEach((controller, _) {
-        if (controller != clientController) {
-          controller.sink.add(req);
-        }
-      });
-    }).onError((dynamic e) {
-      print(e);
-      _controllers.remove(clientController);
-      clientController.close();
-      print('Disconnected: #${request.hashCode}');
-    });
-
-    await for (final req in clientController.stream) {
-      print('  -> piped to #${request.hashCode}');
-
-      yield Message(
-          chatIdMain: req.chatIdMain,
-          senderMainId: req.senderMainId,
-          content: req.content,
-          hashcode: req.hashcode,
-          date: req.date);
-    }
-  }
-
-  @override
   Future<MessageBase> createMessage(ServiceCall call, Message request) async {
     var src = await messagesService.addNewMessage(
-        friendsChatId: request.chatIdMain,
-        senderId: request.senderMainId,
+        chatId: request.chatId,
+        senderId: request.senderId,
         content: request.content,
-        date: request.date);
+        createdDate: request.createdDate,
+        updatedDate: request.updatedDate,
+        deletedDate: request.deletedDate);
 
     var message = MessageBase();
 
     if (src != 0) {
       message.ok = true;
-      message.mainMessagesId = src;
+      message.messageId = src;
     } else {
       message.ok = false;
     }
@@ -79,7 +45,7 @@ class GrpcChat extends GrpcChatServiceBase {
   @override
   Stream<MessageFromBase> synchronization(
       ServiceCall call, LastMessage request) async* {
-    if (request.mainIdMessage == 0) {
+    if (request.messageId == 0) {
       MessageFromBase lastMessage = MessageFromBase();
       yield lastMessage;
     } else {
@@ -91,15 +57,22 @@ class GrpcChat extends GrpcChatServiceBase {
       } else {
         for (int i = 0; i < messages.length; i++) {
           MessageFromBase lastMessage = MessageFromBase();
-          lastMessage.mainIdMessage = messages[i]['main_messages_id'];
-          lastMessage.chatIdMain = messages[i]['friends_chat_id'];
-          lastMessage.senderMainId = messages[i]['sender_id'];
+          lastMessage.senderId = messages[i]['sender_id'];
+          lastMessage.chatId = messages[i]['chat_id'];
           lastMessage.content = messages[i]['content'];
-          lastMessage.date = messages[i]['date'];
+          lastMessage.createdDate = messages[i]['created_date'];
+          lastMessage.updatedDate = messages[i]['updated_date'];
+          lastMessage.deletedDate = messages[i]['deleted_date'];
           yield lastMessage;
         }
       }
     }
+  }
+
+  @override
+  Future<Empty> connecting(ServiceCall call, Empty request) {
+    // TODO: implement connecting
+    throw UnimplementedError();
   }
 }
 
