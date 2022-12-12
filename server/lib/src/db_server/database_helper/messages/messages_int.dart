@@ -4,13 +4,11 @@ import '../../../library/library_server.dart';
 abstract class IMessagesServices {
   factory IMessagesServices() => MessagesServices();
 
+  //toDO
   addNewMessage({
     required int chatId,
     required int senderId,
     required String content,
-    required String createdDate,
-    required String updatedDate,
-    required String deletedDate,
   });
 
   getMessageById({required int id});

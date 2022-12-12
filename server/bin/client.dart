@@ -9,7 +9,8 @@ class Client {
   var response;
   bool executionInProgress = true;
 
-  Future<MessageBase> SendMessage(Message message) async {
+  //toDo
+  Future<MessageBase> sendMessage(CreateMessageRequest message) async {
     channel = ClientChannel('localhost',
         port: 50000,
         options:
@@ -18,6 +19,11 @@ class Client {
     stub = GrpcChatClient(channel!,
         options: CallOptions(timeout: Duration(seconds: 30)));
 
+    //checkConnect
+    final result = stub!.connecting(await getRequest(message.senderMainId));
+    var p = await result;
+    print(p.toString());
+    //
     // while (executionInProgress) {
     //   try {
     //     print('---- Welcome to the dart store API ---');
@@ -31,7 +37,7 @@ class Client {
       response = await stub!.createMessage(message);
     } catch (e) {
       print(e);
-      response = MessageBase(ok: false, messageId: 0);
+      response = MessageBase(ok: false, mainMessagesId: 0);
     } finally {
       if (response.ok) {
         print('Записали сообщение на сервер');
@@ -45,6 +51,10 @@ class Client {
     // //Пользовательский ввод в консоль
     // var result = stdin.readLineSync() ?? 'y';
     // executionInProgress = result.toLowerCase() != 'y';
+  }
+
+  Future<ConnectRequest> getRequest(int id) async {
+    return ConnectRequest(id: id);
   }
 
 // await channel!.shutdown();
@@ -66,16 +76,15 @@ class Client {
 var con = false;
 void main() async {
   var client = Client();
-  var message = Message();
-  message.messageId = 1;
-  message.senderId = 1;
+  var message = CreateMessageRequest();
+  message.chatIdMain = 1;
+  message.senderMainId = 1;
   message.content = "Hello";
-  message.createdDate = "2022-12-02T21:36:32.653712";
 
   ///
   ///Если присылает один и тот же mainMessageId
   ///поменяй message.date или message.content
   ///
   print("Обратный ответ:");
-  print(await client.SendMessage(message));
+  print(await client.sendMessage(message));
 }

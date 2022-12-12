@@ -7,23 +7,22 @@ class MessagesServices implements IMessagesServices {
     required int chatId,
     required int senderId,
     required String content,
-    required String createdDate,
-    required String updatedDate,
-    required String deletedDate,
   }) async {
     var db = await dbServerServices.openDatabase();
 
+    //toDo
     await db.execute('''
       INSERT INTO messages (chat_id, sender_id, content, created_date, updated_date, deleted_date) VALUES (
         $chatId,
         $senderId,
         "$content",
-        "$createdDate",
-        "$updatedDate",
-        "$deletedDate"
+        "2022-12-02T21:36:32.653712",
+        "2022-12-02T21:36:32.653712",
+        ""
       )
       ''');
 
+    //toDO
     var id = await db.rawQuery('''
       SELECT message_id FROM messages
       WHERE (
@@ -33,11 +32,11 @@ class MessagesServices implements IMessagesServices {
         AND
         (content = '$content')
         AND
-        (created_date = '$createdDate')
+        (created_date = '2022-12-02T21:36:32.653712')
         AND
-        (updated_date = '$updatedDate')
+        (updated_date = '2022-12-02T21:36:32.653712')
         AND
-        (deleted_date = '$deletedDate')
+        (deleted_date = '')
         )
     ''');
     return id[0]['message_id'];
@@ -95,9 +94,9 @@ class MessagesServices implements IMessagesServices {
     var db = await dbServerServices.openDatabase();
     var messages = await db.rawQuery('''SELECT *
       FROM messages, friends_chat AS friend
-      WHERE (messages_id > ${message.messageId} AND
-        (friend.friend1_id = ${message.userId} OR 
-        friend.friend2_id = ${message.userId}))''');
+      WHERE (messages_id > ${message.mainIdMessage} AND
+        (friend.friend1_id = ${message.mainIdUser} OR 
+        friend.friend2_id = ${message.mainIdUser}))''');
     return messages;
   }
 }

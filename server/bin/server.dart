@@ -9,43 +9,38 @@ import '../lib/src/library/library_server.dart';
 ///Заполняем все методы как и в Protoc файле
 ///
 class GrpcChat extends GrpcChatServiceBase {
-  final _controllers = <StreamController<Message>, void>{};
   var messagesService = MessagesServices();
   var chatsService = ChatsServices();
   var usersService = UsersServices();
 
+  //toDO!!!
   @override
-  Future<MessageBase> createMessage(ServiceCall call, Message request) async {
+  Future<CreateMessageResponse> createMessage(
+      ServiceCall call, CreateMessageRequest request) async {
     var src = await messagesService.addNewMessage(
-        chatId: request.chatId,
-        senderId: request.senderId,
-        content: request.content,
-        createdDate: request.createdDate,
-        updatedDate: request.updatedDate,
-        deletedDate: request.deletedDate);
+      chatId: request.chatIdMain,
+      senderId: request.senderMainId,
+      content: request.content,
+    );
 
     var message = MessageBase();
 
     if (src != 0) {
       message.ok = true;
-      message.messageId = src;
+      message.mainMessagesId = src;
     } else {
       message.ok = false;
     }
-    return message;
+    return CreateMessageResponse(
+        mainMessagesId: message.mainMessagesId,
+        dateCreate: '2022-12-02T21:36:32.653712'); //toDo!!!
   }
 
-  @override
-  Stream<MessageBase> createMessages(
-      ServiceCall call, Stream<Message> request) {
-    // TODO: implement createNessages
-    throw UnimplementedError();
-  }
-
+  //toDO!!!
   @override
   Stream<MessageFromBase> synchronization(
       ServiceCall call, LastMessage request) async* {
-    if (request.messageId == 0) {
+    if (request.mainIdMessage == 0) {
       MessageFromBase lastMessage = MessageFromBase();
       yield lastMessage;
     } else {
@@ -57,22 +52,39 @@ class GrpcChat extends GrpcChatServiceBase {
       } else {
         for (int i = 0; i < messages.length; i++) {
           MessageFromBase lastMessage = MessageFromBase();
-          lastMessage.senderId = messages[i]['sender_id'];
-          lastMessage.chatId = messages[i]['chat_id'];
+          lastMessage.senderMainId = messages[i]['sender_id'];
+          lastMessage.chatIdMain = messages[i]['chat_id'];
           lastMessage.content = messages[i]['content'];
-          lastMessage.createdDate = messages[i]['created_date'];
-          lastMessage.updatedDate = messages[i]['updated_date'];
-          lastMessage.deletedDate = messages[i]['deleted_date'];
+          lastMessage.date = messages[i]['created_date'];
           yield lastMessage;
         }
       }
     }
   }
 
+  //ToDO!!!
   @override
-  Future<Empty> connecting(ServiceCall call, Empty request) {
-    // TODO: implement connecting
+  Future<DeleteMessageResponse> deleteMessage(
+      ServiceCall call, DeleteMessageRequest request) {
+    // TODO: implement deleteMessage
     throw UnimplementedError();
+  }
+
+  //ToDO!!!
+  @override
+  Future<UpdateMessageResponse> updateMessage(
+      ServiceCall call, UpdateMessageRequest request) {
+    // TODO: implement updateMessage
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ConnectResponse> connecting(
+      ServiceCall call, ConnectRequest request) async {
+    //save to db
+    print('Connect: id: ${request.id}  hashcode: ${request.hashCode}');
+
+    return ConnectResponse(id: request.id, hashConnect: request.hashCode);
   }
 }
 
