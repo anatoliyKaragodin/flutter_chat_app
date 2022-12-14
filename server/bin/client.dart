@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:grpc/grpc.dart';
 
 import '../lib/src/generated/grpc_manager.pbgrpc.dart';
@@ -19,10 +21,6 @@ class Client {
     stub = GrpcChatClient(channel!,
         options: CallOptions(timeout: Duration(seconds: 30)));
 
-    //checkConnect
-    final result = stub!.connecting(await getRequest(message.senderMainId));
-    var p = await result;
-    print(p.toString());
     //
     // while (executionInProgress) {
     //   try {
@@ -48,13 +46,7 @@ class Client {
     }
     return response;
     // print('Do you wish to exit the store? (Y/n)');
-    // //Пользовательский ввод в консоль
-    // var result = stdin.readLineSync() ?? 'y';
-    // executionInProgress = result.toLowerCase() != 'y';
-  }
-
-  Future<ConnectRequest> getRequest(int id) async {
-    return ConnectRequest(id: id);
+    //Пользовательский ввод в консоль
   }
 
 // await channel!.shutdown();
@@ -76,6 +68,8 @@ class Client {
 var con = false;
 void main() async {
   var client = Client();
+  var result = stdin.readLineSync();
+
   var message = CreateMessageRequest();
   message.chatIdMain = 1;
   message.senderMainId = 1;

@@ -23,6 +23,9 @@ Future<void> main() async {
   //         WHERE main_message_id = '22';
   //               ''');
 
+  // print(await usersService.getUserIdByChat(senderId: 2, chatId: 1));
+  print(await usersService.getHashCodeById(id: 2));
+
   ///
   ///Вывод таблицы сообщений
   ///

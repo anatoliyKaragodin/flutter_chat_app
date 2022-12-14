@@ -3,12 +3,7 @@ import '../../../library/library_server.dart';
 abstract class IChatsServices {
   factory IChatsServices() => ChatsServices();
 
-  createChat(
-      {required int friend1Id,
-      required int friend2Id,
-      required String createdDate,
-      String? deletedDate,
-      required String updatedDate});
+  createChat({required int friend1_id, required int friend2_id});
 
   getChatById({required int id});
 
@@ -16,9 +11,9 @@ abstract class IChatsServices {
 
   deleteChat({required int id});
 
-  getChatsByUserId({required int userId});
+  getChatsByUserId({required int userID});
 
-  getChatByTwoIds({required int friend1Id, required int friend2Id});
+  getChatByTwoIds({required int friend1_id, required int friend2_id});
 
   getAllChats();
 }

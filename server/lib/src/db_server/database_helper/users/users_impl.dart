@@ -6,7 +6,8 @@ class UsersServices implements IUsersServices {
       {required String name,
       required String email,
       required String registrationDate,
-      required String profilePicUrl}) async {
+      required String profilePicUrl,
+      required String password}) async {
     var db = await dbServerServices.openDatabase();
 
     await db.execute('''
@@ -47,7 +48,7 @@ class UsersServices implements IUsersServices {
   }
 
   @override
-  getUserByField({required String field, required String fieldValue}) async {
+  getUserByField({required String field, required Object fieldValue}) async {
     var db = await dbServerServices.openDatabase();
 
     return await db
@@ -60,5 +61,27 @@ class UsersServices implements IUsersServices {
 
     return await db
         .rawUpdate('''UPDATE users SET $newValues WHERE ($condition)''');
+  }
+
+  @override
+  getUserIdByChat({required int senderId, required int chatId}) async {
+    var db = await dbServerServices.openDatabase();
+
+    var users = await db.rawQuery(
+        '''SELECT friend1_id, friend2_id FROM chats WHERE (chat_id = $chatId)''');
+
+    return await users[0]['friend1_id'] == senderId
+        ? users[0]['friend2_id']
+        : users[0]['friend1_id'];
+  }
+
+  @override
+  getHashCodeById({required int id}) async {
+    var db = await dbServerServices.openDatabase();
+
+    var hashConnect = await db
+        .rawQuery('''SELECT hash_connect FROM users WHERE (user_id = $id)''');
+
+    return hashConnect[0]['hash_connect'];
   }
 }

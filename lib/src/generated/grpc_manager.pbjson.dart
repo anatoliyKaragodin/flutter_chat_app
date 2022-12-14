@@ -25,17 +25,6 @@ const ConnectRequest$json = const {
 
 /// Descriptor for `ConnectRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List connectRequestDescriptor = $convert.base64Decode('Cg5Db25uZWN0UmVxdWVzdBIOCgJpZBgBIAEoBVICaWQ=');
-@$core.Deprecated('Use connectResponseDescriptor instead')
-const ConnectResponse$json = const {
-  '1': 'ConnectResponse',
-  '2': const [
-    const {'1': 'id', '3': 1, '4': 1, '5': 5, '10': 'id'},
-    const {'1': 'hashConnect', '3': 2, '4': 1, '5': 5, '10': 'hashConnect'},
-  ],
-};
-
-/// Descriptor for `ConnectResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List connectResponseDescriptor = $convert.base64Decode('Cg9Db25uZWN0UmVzcG9uc2USDgoCaWQYASABKAVSAmlkEiAKC2hhc2hDb25uZWN0GAIgASgFUgtoYXNoQ29ubmVjdA==');
 @$core.Deprecated('Use createMessageRequestDescriptor instead')
 const CreateMessageRequest$json = const {
   '1': 'CreateMessageRequest',

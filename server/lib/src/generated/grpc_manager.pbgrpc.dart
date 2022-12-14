@@ -15,11 +15,11 @@ export 'grpc_manager.pb.dart';
 
 class GrpcChatClient extends $grpc.Client {
   static final _$connecting =
-      $grpc.ClientMethod<$0.ConnectRequest, $0.ConnectResponse>(
+      $grpc.ClientMethod<$0.ConnectRequest, $0.MessageFromBase>(
           '/GrpcChat/connecting',
           ($0.ConnectRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
-              $0.ConnectResponse.fromBuffer(value));
+              $0.MessageFromBase.fromBuffer(value));
   static final _$createMessage =
       $grpc.ClientMethod<$0.CreateMessageRequest, $0.CreateMessageResponse>(
           '/GrpcChat/createMessage',
@@ -50,9 +50,10 @@ class GrpcChatClient extends $grpc.Client {
       $core.Iterable<$grpc.ClientInterceptor>? interceptors})
       : super(channel, options: options, interceptors: interceptors);
 
-  $grpc.ResponseFuture<$0.ConnectResponse> connecting($0.ConnectRequest request,
+  $grpc.ResponseStream<$0.MessageFromBase> connecting(
+      $async.Stream<$0.ConnectRequest> request,
       {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$connecting, request, options: options);
+    return $createStreamingCall(_$connecting, request, options: options);
   }
 
   $grpc.ResponseFuture<$0.CreateMessageResponse> createMessage(
@@ -86,13 +87,13 @@ abstract class GrpcChatServiceBase extends $grpc.Service {
   $core.String get $name => 'GrpcChat';
 
   GrpcChatServiceBase() {
-    $addMethod($grpc.ServiceMethod<$0.ConnectRequest, $0.ConnectResponse>(
+    $addMethod($grpc.ServiceMethod<$0.ConnectRequest, $0.MessageFromBase>(
         'connecting',
-        connecting_Pre,
-        false,
-        false,
+        connecting,
+        true,
+        true,
         ($core.List<$core.int> value) => $0.ConnectRequest.fromBuffer(value),
-        ($0.ConnectResponse value) => value.writeToBuffer()));
+        ($0.MessageFromBase value) => value.writeToBuffer()));
     $addMethod(
         $grpc.ServiceMethod<$0.CreateMessageRequest, $0.CreateMessageResponse>(
             'createMessage',
@@ -129,11 +130,6 @@ abstract class GrpcChatServiceBase extends $grpc.Service {
         ($0.MessageFromBase value) => value.writeToBuffer()));
   }
 
-  $async.Future<$0.ConnectResponse> connecting_Pre(
-      $grpc.ServiceCall call, $async.Future<$0.ConnectRequest> request) async {
-    return connecting(call, await request);
-  }
-
   $async.Future<$0.CreateMessageResponse> createMessage_Pre(
       $grpc.ServiceCall call,
       $async.Future<$0.CreateMessageRequest> request) async {
@@ -157,8 +153,8 @@ abstract class GrpcChatServiceBase extends $grpc.Service {
     yield* synchronization(call, await request);
   }
 
-  $async.Future<$0.ConnectResponse> connecting(
-      $grpc.ServiceCall call, $0.ConnectRequest request);
+  $async.Stream<$0.MessageFromBase> connecting(
+      $grpc.ServiceCall call, $async.Stream<$0.ConnectRequest> request);
   $async.Future<$0.CreateMessageResponse> createMessage(
       $grpc.ServiceCall call, $0.CreateMessageRequest request);
   $async.Future<$0.UpdateMessageResponse> updateMessage(
