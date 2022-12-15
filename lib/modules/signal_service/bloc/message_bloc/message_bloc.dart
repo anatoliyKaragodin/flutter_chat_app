@@ -3,7 +3,6 @@ import 'package:chat_app/modules/signal_service/bloc/grpc_connection_bloc/grpc_c
 import 'package:chat_app/src/generated/grpc_lib/grpc_message_lib.dart';
 import 'package:equatable/equatable.dart';
 
-
 import '../../../../src/libraries/library_all.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,13 +40,14 @@ class MessageBloc extends Bloc<MessageEvent, MessageState> {
     on<ReadMessageEvent>(_onReadMessageEvent);
     on<CreateMessageEvent>(_onCreateMessageEvent);
     on<UpdateMessageEvent>(_onUpdateMessageEvent);
-//TODO:добавить удаление сообщения
     on<DeleteMessageEvent>(_onDeleteMessageEvent);
     on<DeleteHistoryMessageEvent>(_onDeleteHistoryMessageEvent);
   }
 
   FutureOr<void> _onReadMessageEvent(
       ReadMessageEvent event, Emitter<MessageState> emit) async {
+    // var msgResp =
+    //     await Locator.getIt<GrpcMessagesClient>().synchronization(request);
     if (event.messages == null) {
       var messages = await _messagesServices.getAllMessages();
       print("MESSAGES:$messages");
@@ -89,8 +89,8 @@ class MessageBloc extends Bloc<MessageEvent, MessageState> {
     //     .getMainIdUserByLocalId(localId: 1); ////поменять запрос на mainUserTabl
     print('message to server \n $messageToServer');
 
-    var messageResponse =
-        await Locator.getIt<GrpcMessagesClient>().createMessage(messageToServer);
+    var messageResponse = await Locator.getIt<GrpcMessagesClient>()
+        .createMessage(messageToServer);
     messageResponse.mainMessagesId;
     print("messageOK:/n $messageResponse");
     // grpcConnection.add(const GrpcConnectionStarted());

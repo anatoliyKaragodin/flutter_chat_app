@@ -5,6 +5,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite_common/sqlite_api.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
+import 'user_path.dart';
+
 class DBHelper {
   //Singleton
   DBHelper._();
@@ -29,7 +31,9 @@ class DBHelper {
     // var dbPath = await dbFactory.getDatabasesPath();
     var dbPath = await getTemporaryDirectory();
     print('PATH: ${dbPath.path}');
-    String path = join(dbPath.path, DatabaseConst.dbFileName);
+    var _dbFileName = 'sfera';
+    String path = join(dbPath.path, 'sfera.db');
+    // var userPath = UserPath().path;
     return await dbFactory.openDatabase(path,
         options: OpenDatabaseOptions(
           version: DatabaseConst.dbVersion,
@@ -123,30 +127,59 @@ CREATE INDEX MESSAGE_ID_IN_MAIN_FK_1 ON ${DatabaseConst.messageIdTable}
 ''');
 
       // //Первичная запись юзера в таблицу
-      await txn.insert(
-        DatabaseConst.userTable,
-        {
-          'name': 'test1',
-          'email': 't1@t1.t1',
-          DatabaseConst.usersColumnProfilePicLink:
-              'https://music.mathwatha.com/wp-content/uploads/2017/08/tonyprofile-300x300.jpg',
-          DatabaseConst.usersColumnCreatedDate: '2022-12-02T21:36:32.653712',
-          DatabaseConst.usersColumnMainUsersId: 1,
-          DatabaseConst.usersColumnUpdatedDate: '2022-12-02T21:36:32.653712',
-        },
-      );
-      await txn.insert(
-        DatabaseConst.userTable,
-        {
-          'name': 'test2',
-          'email': 't2@t2.t2',
-          DatabaseConst.usersColumnProfilePicLink:
-              'https://music.mathwatha.com/wp-content/uploads/2017/08/tonyprofile-300x300.jpg',
-          DatabaseConst.usersColumnCreatedDate: '2022-12-02T21:36:32.653712',
-          DatabaseConst.usersColumnMainUsersId: 2,
-          DatabaseConst.usersColumnUpdatedDate: '2022-12-02T21:36:32.653712',
-        },
-      );
+      // if (UserPath().path == 'sfera_test1.db') {
+        await txn.insert(
+          DatabaseConst.userTable,
+          {
+            'name': 'test1',
+            'email': 't1@t1.t1',
+            DatabaseConst.usersColumnProfilePicLink:
+                'https://music.mathwatha.com/wp-content/uploads/2017/08/tonyprofile-300x300.jpg',
+            DatabaseConst.usersColumnCreatedDate: '2022-12-02T21:36:32.653712',
+            DatabaseConst.usersColumnMainUsersId: 1,
+            DatabaseConst.usersColumnUpdatedDate: '2022-12-02T21:36:32.653712',
+          },
+        );
+        await txn.insert(
+          DatabaseConst.userTable,
+          {
+            'name': 'test2',
+            'email': 't2@t2.t2',
+            DatabaseConst.usersColumnProfilePicLink:
+                'https://music.mathwatha.com/wp-content/uploads/2017/08/tonyprofile-300x300.jpg',
+            DatabaseConst.usersColumnCreatedDate: '2022-12-02T21:36:32.653712',
+            DatabaseConst.usersColumnMainUsersId: 2,
+            DatabaseConst.usersColumnUpdatedDate: '2022-12-02T21:36:32.653712',
+          },
+        );
+      // }
+
+      // if (UserPath().path == 'sfera_test2.db') {
+      //   await txn.insert(
+      //     DatabaseConst.userTable,
+      //     {
+      //       'name': 'test2',
+      //       'email': 't2@t2.t2',
+      //       DatabaseConst.usersColumnProfilePicLink:
+      //           'https://music.mathwatha.com/wp-content/uploads/2017/08/tonyprofile-300x300.jpg',
+      //       DatabaseConst.usersColumnCreatedDate: '2022-12-02T21:36:32.653712',
+      //       DatabaseConst.usersColumnMainUsersId: 2,
+      //       DatabaseConst.usersColumnUpdatedDate: '2022-12-02T21:36:32.653712',
+      //     },
+      //   );
+      //   await txn.insert(
+      //     DatabaseConst.userTable,
+      //     {
+      //       'name': 'test1',
+      //       'email': 't1@t1.t1',
+      //       DatabaseConst.usersColumnProfilePicLink:
+      //           'https://music.mathwatha.com/wp-content/uploads/2017/08/tonyprofile-300x300.jpg',
+      //       DatabaseConst.usersColumnCreatedDate: '2022-12-02T21:36:32.653712',
+      //       DatabaseConst.usersColumnMainUsersId: 1,
+      //       DatabaseConst.usersColumnUpdatedDate: '2022-12-02T21:36:32.653712',
+      //     },
+      //   );
+      // }
       await txn.insert(
         DatabaseConst.chatsTable,
         {

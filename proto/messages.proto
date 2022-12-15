@@ -21,7 +21,12 @@ message Empty {}
 //     int32 id = 1;
 //     int32 hashConnect = 2;
 // }
-
+// message GetMessageRequest{
+//     int32 id = 1;
+// }
+// message GetMessageResponse{
+//     repeated Message message = 1;
+// }
 message CreateMessageRequest {
     int32 chatIdMain = 1;
     int32 senderMainId = 2;

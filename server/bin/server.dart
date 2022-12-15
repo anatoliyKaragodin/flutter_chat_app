@@ -51,7 +51,8 @@ class GrpcMessage extends GrpcMessagesServiceBase {
     if (request.mainIdMessage == 0) {
       MessageFromBase lastMessage = MessageFromBase();
       yield lastMessage;
-    } else {
+    }
+     else {
       var messages = await messagesService.getRecentMessages(message: request);
       MessageFromBase lastMessage = MessageFromBase();
       if (messages.length == 0) {

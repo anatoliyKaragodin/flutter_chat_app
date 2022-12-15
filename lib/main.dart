@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:chat_app/modules/signal_service/bloc/grpc_connection_bloc/grpc_connection_bloc.dart';
 import 'package:chat_app/ui/pages/authentication_page/authentication_page.dart';
 import 'package:chat_app/modules/signal_service/bloc/grpc_connection_bloc/grpc_connection_bloc.dart';
+import 'modules/signal_service/bloc/auth_bloc/auth_bloc.dart';
 import 'ui/pages/library/library_pages.dart';
 import 'src/libraries/library_all.dart';
 import 'modules/signal_service/service_locator/locator.dart';
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        // BlocProvider<AuthBloc>(
+        //   create: (context) => AuthBloc()..add(const ChangeAuthEvent('test1')),
+        // ),
         BlocProvider<ConnectionBloc>(
           create: (context) => ConnectionBloc(),
           // lazy: false,
@@ -58,6 +62,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => ChangeThemeBloc(),
         ),
+        
       ],
       child: BlocBuilder<ChangeThemeBloc, ChangeThemeState>(
         builder: (context, state) {
