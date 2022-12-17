@@ -25,7 +25,7 @@ class UserChatLayoutState extends State<UserChatLayout> {
     return Column(
       children: [
         ChatAppBarWidget(
-          image: user.profilePicLink,
+          image: user.profilePicLink!,
           name: user.name,
         ),
         Expanded(

@@ -16,9 +16,9 @@ class _ProfileLayout extends StatelessWidget {
               children: [
                 const SizedBox(height: 205),
                 // Фон
-                _AppBluredImage(image: state.users![0].profilePicLink),
+                _AppBluredImage(image: state.users![0].profilePicLink!),
                 // Аватарка
-                _UserPic(userPic: state.users![0].profilePicLink),
+                _UserPic(userPic: state.users![0].profilePicLink!),
                 // Кнопка изменение аву
                 const _ChangeUserPic()
               ],
@@ -29,7 +29,7 @@ class _ProfileLayout extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                   Text(
+                  Text(
                     'Username',
                     style: Theme.of(context).textTheme.headline6,
                   ),
