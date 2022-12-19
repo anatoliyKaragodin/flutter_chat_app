@@ -1,4 +1,5 @@
 import 'package:grpc/grpc.dart';
+import 'package:server/src/generated/users.pb.dart';
 
 import 'package:server/src/library/library_server.dart';
 

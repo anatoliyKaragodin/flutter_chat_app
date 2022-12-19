@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:grpc/grpc.dart';
 
+import 'package:server/src/generated/users.pbgrpc.dart';
+
 import 'package:server/src/library/library_server.dart';
 
 ///
@@ -116,15 +118,15 @@ class GrpcMessage extends GrpcMessagesServiceBase {
       message.dateDelete = timeDelete;
       message.idMessageMain = request.idMessageMain;
     }
-    return message;
+    return message; 
   }
 
   @override
   Future<Users> getAllUsers(ServiceCall call, Empty request) async {
     var users = await usersService.getAllUsers();
-    List<User> userList = [];
+    List<UserMessage> userList = [];
     for (int i = 0; i < users.length; i++) {
-      var userForList = User();
+      var userForList = UserMessage();
       userForList.id = users[i]['user_id'] as int;
       userForList.name = users[i]['name'] as String;
       userForList.email = users[i]['email'] as String;
@@ -232,16 +234,16 @@ class GrpcUsers extends GrpcUsersServiceBase {
     var src = await UsersServices().createUser(
         name: request.name,
         email: request.email,
-        registrationDate: request.dateCreated,
+        createdDate: request.createdDate,
         profilePicUrl: request.profilePicUrl,
         password: request.password);
     var createUserResponse = CreateUserResponse();
-    if (src['main_users_id'] != 0) {
-      createUserResponse.dateCreated = request.dateCreated;
-      createUserResponse.email = request.email;
-      createUserResponse.name = request.name;
-      createUserResponse.profilePicUrl = request.profilePicUrl;
-      createUserResponse.id = src['main_users_id'];
+    if (src[0]['user_id'] != 0) {
+      createUserResponse.id = src[0]['user_id'] as int;
+      createUserResponse.name = src[0]['name'] as String;
+      createUserResponse.email = src[0]['email'] as String;
+      createUserResponse.profilePicUrl = src[0]['profile_pic_url'] as String;
+      createUserResponse.createdDate = src[0]['created_date'];
     }
     return createUserResponse;
   }
@@ -262,26 +264,13 @@ class GrpcUsers extends GrpcUsersServiceBase {
 
   @override
   Future<GetUserResponse> getUser(
-      ServiceCall call, GetUserRequest request) async {
-    var getUserResponse = GetUserResponse();
-    var src;
-    if (!request.id.isNaN) {
-      src = await UsersServices()
-          .getUserByField(field: 'user_id', fieldValue: request.id);
-    } else if (request.name.isNotEmpty) {
-      src = await UsersServices()
-          .getUserByField(field: 'name', fieldValue: request.name);
-    } else if (request.email.isNotEmpty) {
-      src = await UsersServices()
-          .getUserByField(field: 'email', fieldValue: request.email);
-    } else if (request.dateCreation.isNotEmpty) {
-      src = await UsersServices().getUserByField(
-          field: 'created_date', fieldValue: request.dateCreation);
-    } else {
-      // // return GrpcError.invalidArgument()
+    ServiceCall call, GetUserRequest request) async {
+      var getUserResponse = GetUserResponse();
+      var src = await UsersServices().getUser(id: request.id);
+        getUserResponse.id  = src[0]['user_id'] as int;
+        getUserResponse.updatedDate = src[0]['updated_date'] as String;
+      return getUserResponse;
     }
-    return getUserResponse;
-  }
 
   @override
   Future<UpdateUserResponse> updateUser(
@@ -297,6 +286,8 @@ class GrpcUsers extends GrpcUsersServiceBase {
     }
     return updateUserResponse;
   }
+
+  
 }
 
 ///
@@ -316,3 +307,5 @@ Future<void> main() async {
   await DbServerServices.instanse.openDatabase();
   print('✅ Server listening on port ${server.port}...');
 }
+
+

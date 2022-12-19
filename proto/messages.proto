@@ -13,7 +13,7 @@ service  GrpcMessages{
 
 message Empty {}
 
-message User {
+message UserMessage {
     int32 id = 1;
     string name = 2;
     string email = 3;
@@ -21,7 +21,7 @@ message User {
 }
 
 message Users {
-    repeated User users = 1; 
+    repeated UserMessage users = 1; 
 }
 
 message ConnectRequest {

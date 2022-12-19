@@ -38,8 +38,8 @@ class Empty extends $pb.GeneratedMessage {
   static Empty? _defaultInstance;
 }
 
-class User extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'User', createEmptyInstance: create)
+class UserMessage extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'UserMessage', createEmptyInstance: create)
     ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id', $pb.PbFieldType.O3)
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
     ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'email')
@@ -47,8 +47,8 @@ class User extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  User._() : super();
-  factory User({
+  UserMessage._() : super();
+  factory UserMessage({
     $core.int? id,
     $core.String? name,
     $core.String? email,
@@ -69,26 +69,26 @@ class User extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory User.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory User.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory UserMessage.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory UserMessage.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  User clone() => User()..mergeFromMessage(this);
+  UserMessage clone() => UserMessage()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  User copyWith(void Function(User) updates) => super.copyWith((message) => updates(message as User)) as User; // ignore: deprecated_member_use
+  UserMessage copyWith(void Function(UserMessage) updates) => super.copyWith((message) => updates(message as UserMessage)) as UserMessage; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static User create() => User._();
-  User createEmptyInstance() => create();
-  static $pb.PbList<User> createRepeated() => $pb.PbList<User>();
+  static UserMessage create() => UserMessage._();
+  UserMessage createEmptyInstance() => create();
+  static $pb.PbList<UserMessage> createRepeated() => $pb.PbList<UserMessage>();
   @$core.pragma('dart2js:noInline')
-  static User getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<User>(create);
-  static User? _defaultInstance;
+  static UserMessage getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UserMessage>(create);
+  static UserMessage? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.int get id => $_getIZ(0);
@@ -129,13 +129,13 @@ class User extends $pb.GeneratedMessage {
 
 class Users extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Users', createEmptyInstance: create)
-    ..pc<User>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'users', $pb.PbFieldType.PM, subBuilder: User.create)
+    ..pc<UserMessage>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'users', $pb.PbFieldType.PM, subBuilder: UserMessage.create)
     ..hasRequiredFields = false
   ;
 
   Users._() : super();
   factory Users({
-    $core.Iterable<User>? users,
+    $core.Iterable<UserMessage>? users,
   }) {
     final _result = create();
     if (users != null) {
@@ -165,7 +165,7 @@ class Users extends $pb.GeneratedMessage {
   static Users? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<User> get users => $_getList(0);
+  $core.List<UserMessage> get users => $_getList(0);
 }
 
 class ConnectRequest extends $pb.GeneratedMessage {

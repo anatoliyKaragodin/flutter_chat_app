@@ -9,21 +9,29 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-class GetUserRequest extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetUserRequest', createEmptyInstance: create)
+class UserModel extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'UserModel', createEmptyInstance: create)
     ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id', $pb.PbFieldType.O3)
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
     ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'email')
-    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'dateCreation', protoName: 'dateCreation')
+    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'profilePicUrl', protoName: 'profilePicUrl')
+    ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'password')
+    ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'createdDate', protoName: 'createdDate')
+    ..aOS(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'updatedDate', protoName: 'updatedDate')
+    ..aOS(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'deletedDate', protoName: 'deletedDate')
     ..hasRequiredFields = false
   ;
 
-  GetUserRequest._() : super();
-  factory GetUserRequest({
+  UserModel._() : super();
+  factory UserModel({
     $core.int? id,
     $core.String? name,
     $core.String? email,
-    $core.String? dateCreation,
+    $core.String? profilePicUrl,
+    $core.String? password,
+    $core.String? createdDate,
+    $core.String? updatedDate,
+    $core.String? deletedDate,
   }) {
     final _result = create();
     if (id != null) {
@@ -35,8 +43,145 @@ class GetUserRequest extends $pb.GeneratedMessage {
     if (email != null) {
       _result.email = email;
     }
-    if (dateCreation != null) {
-      _result.dateCreation = dateCreation;
+    if (profilePicUrl != null) {
+      _result.profilePicUrl = profilePicUrl;
+    }
+    if (password != null) {
+      _result.password = password;
+    }
+    if (createdDate != null) {
+      _result.createdDate = createdDate;
+    }
+    if (updatedDate != null) {
+      _result.updatedDate = updatedDate;
+    }
+    if (deletedDate != null) {
+      _result.deletedDate = deletedDate;
+    }
+    return _result;
+  }
+  factory UserModel.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory UserModel.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  UserModel clone() => UserModel()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  UserModel copyWith(void Function(UserModel) updates) => super.copyWith((message) => updates(message as UserModel)) as UserModel; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static UserModel create() => UserModel._();
+  UserModel createEmptyInstance() => create();
+  static $pb.PbList<UserModel> createRepeated() => $pb.PbList<UserModel>();
+  @$core.pragma('dart2js:noInline')
+  static UserModel getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UserModel>(create);
+  static UserModel? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get name => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set name($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasName() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearName() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get email => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set email($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasEmail() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearEmail() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get profilePicUrl => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set profilePicUrl($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasProfilePicUrl() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearProfilePicUrl() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get password => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set password($core.String v) { $_setString(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasPassword() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearPassword() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.String get createdDate => $_getSZ(5);
+  @$pb.TagNumber(6)
+  set createdDate($core.String v) { $_setString(5, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasCreatedDate() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearCreatedDate() => clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.String get updatedDate => $_getSZ(6);
+  @$pb.TagNumber(7)
+  set updatedDate($core.String v) { $_setString(6, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasUpdatedDate() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearUpdatedDate() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.String get deletedDate => $_getSZ(7);
+  @$pb.TagNumber(8)
+  set deletedDate($core.String v) { $_setString(7, v); }
+  @$pb.TagNumber(8)
+  $core.bool hasDeletedDate() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearDeletedDate() => clearField(8);
+}
+
+class GetUserRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetUserRequest', createEmptyInstance: create)
+    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
+    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'email')
+    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'createdDate', protoName: 'createdDate')
+    ..hasRequiredFields = false
+  ;
+
+  GetUserRequest._() : super();
+  factory GetUserRequest({
+    $core.int? id,
+    $core.String? name,
+    $core.String? email,
+    $core.String? createdDate,
+  }) {
+    final _result = create();
+    if (id != null) {
+      _result.id = id;
+    }
+    if (name != null) {
+      _result.name = name;
+    }
+    if (email != null) {
+      _result.email = email;
+    }
+    if (createdDate != null) {
+      _result.createdDate = createdDate;
     }
     return _result;
   }
@@ -89,38 +234,38 @@ class GetUserRequest extends $pb.GeneratedMessage {
   void clearEmail() => clearField(3);
 
   @$pb.TagNumber(4)
-  $core.String get dateCreation => $_getSZ(3);
+  $core.String get createdDate => $_getSZ(3);
   @$pb.TagNumber(4)
-  set dateCreation($core.String v) { $_setString(3, v); }
+  set createdDate($core.String v) { $_setString(3, v); }
   @$pb.TagNumber(4)
-  $core.bool hasDateCreation() => $_has(3);
+  $core.bool hasCreatedDate() => $_has(3);
   @$pb.TagNumber(4)
-  void clearDateCreation() => clearField(4);
+  void clearCreatedDate() => clearField(4);
 }
 
 class GetUserResponse extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GetUserResponse', createEmptyInstance: create)
     ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id', $pb.PbFieldType.O3)
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'dateUpdated', protoName: 'dateUpdated')
-    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'dateDeleted', protoName: 'dateDeleted')
+    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'updatedDate', protoName: 'updatedDate')
+    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'deletedDate', protoName: 'deletedDate')
     ..hasRequiredFields = false
   ;
 
   GetUserResponse._() : super();
   factory GetUserResponse({
     $core.int? id,
-    $core.String? dateUpdated,
-    $core.String? dateDeleted,
+    $core.String? updatedDate,
+    $core.String? deletedDate,
   }) {
     final _result = create();
     if (id != null) {
       _result.id = id;
     }
-    if (dateUpdated != null) {
-      _result.dateUpdated = dateUpdated;
+    if (updatedDate != null) {
+      _result.updatedDate = updatedDate;
     }
-    if (dateDeleted != null) {
-      _result.dateDeleted = dateDeleted;
+    if (deletedDate != null) {
+      _result.deletedDate = deletedDate;
     }
     return _result;
   }
@@ -155,48 +300,43 @@ class GetUserResponse extends $pb.GeneratedMessage {
   void clearId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get dateUpdated => $_getSZ(1);
+  $core.String get updatedDate => $_getSZ(1);
   @$pb.TagNumber(2)
-  set dateUpdated($core.String v) { $_setString(1, v); }
+  set updatedDate($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasDateUpdated() => $_has(1);
+  $core.bool hasUpdatedDate() => $_has(1);
   @$pb.TagNumber(2)
-  void clearDateUpdated() => clearField(2);
+  void clearUpdatedDate() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.String get dateDeleted => $_getSZ(2);
+  $core.String get deletedDate => $_getSZ(2);
   @$pb.TagNumber(3)
-  set dateDeleted($core.String v) { $_setString(2, v); }
+  set deletedDate($core.String v) { $_setString(2, v); }
   @$pb.TagNumber(3)
-  $core.bool hasDateDeleted() => $_has(2);
+  $core.bool hasDeletedDate() => $_has(2);
   @$pb.TagNumber(3)
-  void clearDateDeleted() => clearField(3);
+  void clearDeletedDate() => clearField(3);
 }
 
 class CreateUserRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'CreateUserRequest', createEmptyInstance: create)
-    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id', $pb.PbFieldType.O3)
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
     ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'email')
     ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'profilePicUrl', protoName: 'profilePicUrl')
     ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'password')
-    ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'dateCreated', protoName: 'dateCreated')
+    ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'createdDate', protoName: 'createdDate')
     ..hasRequiredFields = false
   ;
 
   CreateUserRequest._() : super();
   factory CreateUserRequest({
-    $core.int? id,
     $core.String? name,
     $core.String? email,
     $core.String? profilePicUrl,
     $core.String? password,
-    $core.String? dateCreated,
+    $core.String? createdDate,
   }) {
     final _result = create();
-    if (id != null) {
-      _result.id = id;
-    }
     if (name != null) {
       _result.name = name;
     }
@@ -209,8 +349,8 @@ class CreateUserRequest extends $pb.GeneratedMessage {
     if (password != null) {
       _result.password = password;
     }
-    if (dateCreated != null) {
-      _result.dateCreated = dateCreated;
+    if (createdDate != null) {
+      _result.createdDate = createdDate;
     }
     return _result;
   }
@@ -235,59 +375,50 @@ class CreateUserRequest extends $pb.GeneratedMessage {
   static CreateUserRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CreateUserRequest>(create);
   static CreateUserRequest? _defaultInstance;
 
-  @$pb.TagNumber(1)
-  $core.int get id => $_getIZ(0);
-  @$pb.TagNumber(1)
-  set id($core.int v) { $_setSignedInt32(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasId() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearId() => clearField(1);
-
   @$pb.TagNumber(2)
-  $core.String get name => $_getSZ(1);
+  $core.String get name => $_getSZ(0);
   @$pb.TagNumber(2)
-  set name($core.String v) { $_setString(1, v); }
+  set name($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(2)
-  $core.bool hasName() => $_has(1);
+  $core.bool hasName() => $_has(0);
   @$pb.TagNumber(2)
   void clearName() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.String get email => $_getSZ(2);
+  $core.String get email => $_getSZ(1);
   @$pb.TagNumber(3)
-  set email($core.String v) { $_setString(2, v); }
+  set email($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(3)
-  $core.bool hasEmail() => $_has(2);
+  $core.bool hasEmail() => $_has(1);
   @$pb.TagNumber(3)
   void clearEmail() => clearField(3);
 
   @$pb.TagNumber(4)
-  $core.String get profilePicUrl => $_getSZ(3);
+  $core.String get profilePicUrl => $_getSZ(2);
   @$pb.TagNumber(4)
-  set profilePicUrl($core.String v) { $_setString(3, v); }
+  set profilePicUrl($core.String v) { $_setString(2, v); }
   @$pb.TagNumber(4)
-  $core.bool hasProfilePicUrl() => $_has(3);
+  $core.bool hasProfilePicUrl() => $_has(2);
   @$pb.TagNumber(4)
   void clearProfilePicUrl() => clearField(4);
 
   @$pb.TagNumber(5)
-  $core.String get password => $_getSZ(4);
+  $core.String get password => $_getSZ(3);
   @$pb.TagNumber(5)
-  set password($core.String v) { $_setString(4, v); }
+  set password($core.String v) { $_setString(3, v); }
   @$pb.TagNumber(5)
-  $core.bool hasPassword() => $_has(4);
+  $core.bool hasPassword() => $_has(3);
   @$pb.TagNumber(5)
   void clearPassword() => clearField(5);
 
   @$pb.TagNumber(6)
-  $core.String get dateCreated => $_getSZ(5);
+  $core.String get createdDate => $_getSZ(4);
   @$pb.TagNumber(6)
-  set dateCreated($core.String v) { $_setString(5, v); }
+  set createdDate($core.String v) { $_setString(4, v); }
   @$pb.TagNumber(6)
-  $core.bool hasDateCreated() => $_has(5);
+  $core.bool hasCreatedDate() => $_has(4);
   @$pb.TagNumber(6)
-  void clearDateCreated() => clearField(6);
+  void clearCreatedDate() => clearField(6);
 }
 
 class CreateUserResponse extends $pb.GeneratedMessage {
@@ -296,8 +427,7 @@ class CreateUserResponse extends $pb.GeneratedMessage {
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
     ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'email')
     ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'profilePicUrl', protoName: 'profilePicUrl')
-    ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'password')
-    ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'dateCreated', protoName: 'dateCreated')
+    ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'createdDate', protoName: 'createdDate')
     ..hasRequiredFields = false
   ;
 
@@ -307,8 +437,7 @@ class CreateUserResponse extends $pb.GeneratedMessage {
     $core.String? name,
     $core.String? email,
     $core.String? profilePicUrl,
-    $core.String? password,
-    $core.String? dateCreated,
+    $core.String? createdDate,
   }) {
     final _result = create();
     if (id != null) {
@@ -323,11 +452,8 @@ class CreateUserResponse extends $pb.GeneratedMessage {
     if (profilePicUrl != null) {
       _result.profilePicUrl = profilePicUrl;
     }
-    if (password != null) {
-      _result.password = password;
-    }
-    if (dateCreated != null) {
-      _result.dateCreated = dateCreated;
+    if (createdDate != null) {
+      _result.createdDate = createdDate;
     }
     return _result;
   }
@@ -389,22 +515,13 @@ class CreateUserResponse extends $pb.GeneratedMessage {
   void clearProfilePicUrl() => clearField(4);
 
   @$pb.TagNumber(5)
-  $core.String get password => $_getSZ(4);
+  $core.String get createdDate => $_getSZ(4);
   @$pb.TagNumber(5)
-  set password($core.String v) { $_setString(4, v); }
+  set createdDate($core.String v) { $_setString(4, v); }
   @$pb.TagNumber(5)
-  $core.bool hasPassword() => $_has(4);
+  $core.bool hasCreatedDate() => $_has(4);
   @$pb.TagNumber(5)
-  void clearPassword() => clearField(5);
-
-  @$pb.TagNumber(6)
-  $core.String get dateCreated => $_getSZ(5);
-  @$pb.TagNumber(6)
-  set dateCreated($core.String v) { $_setString(5, v); }
-  @$pb.TagNumber(6)
-  $core.bool hasDateCreated() => $_has(5);
-  @$pb.TagNumber(6)
-  void clearDateCreated() => clearField(6);
+  void clearCreatedDate() => clearField(5);
 }
 
 class UpdateUserRequest extends $pb.GeneratedMessage {

@@ -24,7 +24,4 @@ export 'package:server/src/generated/messages.pbenum.dart';
 export 'package:server/src/generated/messages.pbjson.dart';
 export 'package:server/src/generated/messages.pbgrpc.dart';
 //users
-export 'package:server/src/generated/users.pb.dart';
 export 'package:server/src/generated/users.pbenum.dart';
-export 'package:server/src/generated/users.pbgrpc.dart';
-export 'package:server/src/generated/users.pbjson.dart';
