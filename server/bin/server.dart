@@ -269,6 +269,8 @@ class GrpcUsers extends GrpcUsersServiceBase {
       var src = await UsersServices().getUser(id: request.id);
         getUserResponse.id  = src[0]['user_id'] as int;
         getUserResponse.updatedDate = src[0]['updated_date'] as String;
+        if (src[0]['deleted_date'] == 0) getUserResponse.deletedDate = src[0]['deleted_date'] as String;
+        getUserResponse.profilePicUrl = src[0]['profile_pic_url'] as String;
       return getUserResponse;
     }
 

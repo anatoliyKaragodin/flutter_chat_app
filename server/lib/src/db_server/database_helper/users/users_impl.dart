@@ -73,7 +73,7 @@ class UsersServices implements IUsersServices {
     Database db = await DbServerServices.instanse.database;
 
     return await db.rawQuery(
-        '''SELECT user_id, updated_date, deleted_date FROM users WHERE (user_id = $id)''');
+        '''SELECT user_id, profile_pic_url, updated_date, deleted_date FROM users WHERE (user_id = $id)''');
   }
 
   @override

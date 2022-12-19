@@ -43,13 +43,14 @@ const GetUserResponse$json = const {
   '1': 'GetUserResponse',
   '2': const [
     const {'1': 'id', '3': 1, '4': 1, '5': 5, '10': 'id'},
-    const {'1': 'updatedDate', '3': 2, '4': 1, '5': 9, '10': 'updatedDate'},
-    const {'1': 'deletedDate', '3': 3, '4': 1, '5': 9, '10': 'deletedDate'},
+    const {'1': 'profilePicUrl', '3': 2, '4': 1, '5': 9, '10': 'profilePicUrl'},
+    const {'1': 'updatedDate', '3': 3, '4': 1, '5': 9, '10': 'updatedDate'},
+    const {'1': 'deletedDate', '3': 4, '4': 1, '5': 9, '10': 'deletedDate'},
   ],
 };
 
 /// Descriptor for `GetUserResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List getUserResponseDescriptor = $convert.base64Decode('Cg9HZXRVc2VyUmVzcG9uc2USDgoCaWQYASABKAVSAmlkEiAKC3VwZGF0ZWREYXRlGAIgASgJUgt1cGRhdGVkRGF0ZRIgCgtkZWxldGVkRGF0ZRgDIAEoCVILZGVsZXRlZERhdGU=');
+final $typed_data.Uint8List getUserResponseDescriptor = $convert.base64Decode('Cg9HZXRVc2VyUmVzcG9uc2USDgoCaWQYASABKAVSAmlkEiQKDXByb2ZpbGVQaWNVcmwYAiABKAlSDXByb2ZpbGVQaWNVcmwSIAoLdXBkYXRlZERhdGUYAyABKAlSC3VwZGF0ZWREYXRlEiAKC2RlbGV0ZWREYXRlGAQgASgJUgtkZWxldGVkRGF0ZQ==');
 @$core.Deprecated('Use createUserRequestDescriptor instead')
 const CreateUserRequest$json = const {
   '1': 'CreateUserRequest',

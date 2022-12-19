@@ -1,3 +1,4 @@
+
 import 'package:grpc/grpc.dart';
 import 'package:server/src/generated/users.pbgrpc.dart';
 
@@ -55,10 +56,13 @@ class UserClient extends GrpcClient {
       id: response.id,
       name: request.name,
       email: request.email,
-      profilePicUrl: request.
+      profilePicUrl: response.profilePicUrl,
+      createdDate: request.createdDate,
+      updatedDate: response.updatedDate,
+      deletedDate: response.deletedDate
     );
 
-    return response;
+    return result;
   }
 
   Future createUser({required CreateUserRequest user}) async {
@@ -72,7 +76,16 @@ class UserClient extends GrpcClient {
       ..password = user.password
       ..createdDate = user.createdDate;
     var response = await stub.createUser(request);
-    print(response);
-    return response;
+
+    var result = await UserModel(
+      id: response.id,
+      name: response.name,
+      email: response.email,
+      profilePicUrl: response.profilePicUrl,
+      createdDate: response.createdDate,
+      updatedDate: response.createdDate
+    );
+
+    return result;
   }
 }
