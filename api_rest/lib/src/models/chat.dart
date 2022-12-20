@@ -1,5 +1,16 @@
 import 'dart:convert';
-import 'package:api_rest/src/db/db_constants';
+
+import 'package:api_rest/src/db/db_constants.dart';
+
+Chat articleFromJson(String str) => Chat.fromJson(json.decode(str));
+
+String articleToJson(Chat data) => json.encode(data.toJson());
+
+List<Chat> articlesFromJson(String str) =>
+    List<Chat>.from(json.decode(str).map((x) => Chat.fromJson(x)));
+
+String articlesToJson(List<Chat> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Chat {
   final int chatId;

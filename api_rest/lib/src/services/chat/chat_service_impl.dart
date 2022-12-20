@@ -7,20 +7,31 @@ class ChatService implements IChatService {
   createChat({required int friend1Id, required int friend2Id}) async {
     Database db = await DbServerServices.instanse.database;
 
-    await db.execute('''
-      INSERT INTO chats (friend1_id, friend2_id) VALUES (
-        $friend1Id,
-        $friend1Id
-      );
-      ''');
+    await db.insert('chats', {
+      'friend1_id': friend1Id,
+      'friend2_id': friend2Id,
+      'created_date': DateTime.now().toIso8601String(),
+      'updated_date': DateTime.now().toIso8601String()
+    });
 
-    return await db.rawQuery('''
-      SELECT main_friends_chat_id FROM chats 
-      WHERE (
-        (friend1_id = $friend1Id) 
-        AND 
-        (friend2_id = $friend2Id));
-    ''');
+    return await db.query('chats',
+        columns: ['chat_id'],
+        where: '(friend1_id = $friend1Id) AND (friend2_id = $friend2Id)');
+
+    // await db.execute('''
+    //   INSERT INTO chats (friend1_id, friend2_id) VALUES (
+    //     $friend1Id,
+    //     $friend1Id
+    //   );
+    //   ''');
+
+    // return await db.rawQuery('''
+    //   SELECT chat_id FROM chats
+    //   WHERE (
+    //     (friend1_id = $friend1Id)
+    //     AND
+    //     (friend2_id = $friend2Id));
+    // ''');
   }
 
   @override

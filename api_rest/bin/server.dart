@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:api_rest/src/models/chat.dart';
 import 'package:api_rest/src/services/chat/chat_service_impl.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart';
@@ -9,26 +10,25 @@ import 'package:shelf_router/shelf_router.dart';
 // Configure routes.
 final _router = Router()
   ..get('/', _rootHandler)
+  ..post('/create_chat', _createChat)
   ..get('/get_all_chats', _getAllChatsHandler);
 
-// UserId userIdFromJson(String str) => UserId.fromJson(json.decode(str));
-
-// String userIdToJson(UserId data) => json.encode(data.toJson());
-
-// List<UserId> userIdsFromJson(String str) =>
-//     List<UserId>.from(json.decode(str).map((x) => UserId.fromJson(x)));
-
-// String userIdsToJson(List<UserId> data) =>
-//     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
-// class UserId {
-//   final int id;
-//   UserId({required this.id});
-
-//   factory UserId.fromJson(Map<String, dynamic> json) => UserId(id: json['id']);
-
-//   Map<String, dynamic> toJson() => {'id': id};
-// }
+Future<Response> _createChat(Request request) async {
+  String body = await request.readAsString();
+  var usersIdsJson = jsonDecode(body)['users'];
+  List<int>? usersIds = usersIdsJson != null ? List.from(usersIdsJson) : null;
+  if (usersIds == null || usersIds.length != 2) {
+    return Response(400);
+  }
+  var friend1Id = usersIds[0];
+  var friend2Id = usersIds[1];
+  try {
+    await ChatService().createChat(friend1Id: friend1Id, friend2Id: friend2Id);
+    return Response.ok('OK');
+  } catch (e) {
+    return Response(400);
+  }
+}
 
 Future<Response> _getAllChatsHandler(Request request) async {
   try {
